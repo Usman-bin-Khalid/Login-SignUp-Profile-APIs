@@ -37,6 +37,8 @@ exports.login = async (req, res) => {
     } catch (err) { res.status(500).send("Server Error"); }
 };
 
+
+
 // COMPLETE PROFILE
 exports.completeProfile = async (req, res) => {
     const { name, dob, country, gender } = req.body;
@@ -47,7 +49,7 @@ exports.completeProfile = async (req, res) => {
 
         const user = await User.findByIdAndUpdate(
             req.user.id, 
-            { 
+            {  
                 fullName: name, 
                 profileImage: profileImageUrl, // Store the Cloudinary URL
                 dob, 
