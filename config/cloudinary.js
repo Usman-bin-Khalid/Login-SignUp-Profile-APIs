@@ -13,8 +13,11 @@ const storage = new CloudinaryStorage({
     params: {
         folder: 'user_profiles', // Folder name in Cloudinary
         allowed_formats: ['jpg', 'png', 'jpeg'],
+        folder: 'social_posts', // Separate folder for posts
+        allowed_formats: ['jpg', 'png', 'jpeg'],
     },
 });
+
 
 const upload = multer({ storage: storage });
 module.exports = upload;
