@@ -25,6 +25,32 @@ exports.createPost = async (req, res) => {
   }
 };
 
+// DELETE POST: Delete a post
+exports.deletePost = async (req, res) => {
+  try {
+    const post = await Post.findByIdAndDelete(req.params.postId);
+    if (!post) return res.status(404).json({ msg: "Post not found" });
+    res.json({ msg: "Post deleted successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "Failed to delete post" });
+  }
+};
+// UPDATE POST: Update a post
+exports.updatePost = async (req, res) => {
+  try {
+    const post = await Post.findByIdAndUpdate(
+      req.params.postId,
+      { caption: req.body.caption },
+      { new: true }
+    );
+    if (!post) return res.status(404).json({ msg: "Post not found" });
+    res.json({ msg: "Post updated successfully", post });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "Failed to update post" });
+  }
+};
 
 
 // GET ALL POSTS: Useful for testing before you follow anyone

@@ -23,4 +23,12 @@ router.put(
     authController.completeProfile
 );
 
+// @route   POST api/auth/logout
+// @desc    Logout user
+router.post('/logout', authMiddleware, authController.logout);
+
+// @route   DELETE api/auth/delete
+// @desc    Delete user account and all related data
+router.delete('/delete', authMiddleware, authController.deleteAccount);
+
 module.exports = router;
