@@ -12,4 +12,4 @@ router.get('/feed', authMiddleware, socialCtrl.getFeed);
 router.put('/like/:postId', authMiddleware, socialCtrl.toggleLike);
 router.post('/follow/:id', authMiddleware, socialCtrl.followUser);
 
-module.exports = router;
+module.exports = router;  

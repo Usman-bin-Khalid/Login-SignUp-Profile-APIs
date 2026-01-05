@@ -117,7 +117,7 @@ exports.deleteAccount = async (req, res) => {
     
     // Find user's posts first to get their IDs
     const userPosts = await Post.find({ user: userId });
-    const userPostIds = userPosts.map(p => p._id);
+    const userPostIds = userPosts.map(p => p._id);l
 
     // Delete comments on these posts
     await Comment.deleteMany({ post: { $in: userPostIds } });
