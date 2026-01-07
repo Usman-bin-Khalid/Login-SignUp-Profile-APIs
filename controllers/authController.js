@@ -18,11 +18,13 @@ exports.signup = async (req, res) => {
     user = new User({ email, password: hashedPassword, fullName });
     await user.save();
 
+
+
     res
       .status(201)
       .json({ status: 1, msg: "User registered successfully", user });
   } catch (err) {
-    res.status(500).send("Server Error");
+    res.status(500).send("Server Error", err);
   }
 };
 
@@ -35,7 +37,7 @@ exports.login = async (req, res) => {
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ msg: "Invalid Credentials" });
-
+  
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
@@ -105,6 +107,8 @@ exports.deleteAccount = async (req, res) => {
 
     // 2. Delete all comments by the user
     await Comment.deleteMany({ user: userId });
+
+    
 
     // 3. Delete comments on user's posts (orphaned comments)
     // Find all posts that *would have been* deleted in step 1?

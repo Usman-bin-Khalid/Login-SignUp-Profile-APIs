@@ -25,6 +25,8 @@ exports.createPost = async (req, res) => {
   }
 };
 
+
+
 // DELETE POST: Delete a post
 exports.deletePost = async (req, res) => {
   try {
