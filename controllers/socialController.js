@@ -26,7 +26,6 @@ exports.createPost = async (req, res) => {
 };
 
 
-
 // DELETE POST: Delete a post
 exports.deletePost = async (req, res) => {
   try {
@@ -38,6 +37,9 @@ exports.deletePost = async (req, res) => {
     res.status(500).json({ msg: "Failed to delete post" });
   }
 };
+
+
+
 // UPDATE POST: Update a post
 exports.updatePost = async (req, res) => {
   try {
@@ -53,7 +55,6 @@ exports.updatePost = async (req, res) => {
     res.status(500).json({ msg: "Failed to update post" });
   }
 };
-
 
 // GET ALL POSTS: Useful for testing before you follow anyone
 exports.getAllPosts = async (req, res) => {
@@ -106,6 +107,7 @@ exports.toggleLike = async (req, res) => {
   }
 };
 
+
 // 3. THE FEED: Get posts only from followed users
 exports.getFeed = async (req, res) => {
   try {
@@ -123,6 +125,7 @@ exports.getFeed = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
+
 
 // 4. FOLLOW USER: Utility to populate the feed
 exports.followUser = async (req, res) => {
@@ -147,3 +150,4 @@ exports.followUser = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
+
