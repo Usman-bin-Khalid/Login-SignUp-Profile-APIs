@@ -130,6 +130,7 @@ exports.getFeed = async (req, res) => {
 
 
 
+
 // 4. FOLLOW USER: Utility to populate the feed
 exports.followUser = async (req, res) => {
   try {
