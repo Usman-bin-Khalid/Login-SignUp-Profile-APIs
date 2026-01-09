@@ -15,6 +15,8 @@ const storage = new CloudinaryStorage({
         allowed_formats: ['jpg', 'png', 'jpeg'],
         folder: 'social_posts', // Separate folder for posts
         allowed_formats: ['jpg', 'png', 'jpeg'],
+        folder: 'ecommerce_products',
+        allowed_formats: ['jpg', 'png', 'jpeg']
     },
 });
 
