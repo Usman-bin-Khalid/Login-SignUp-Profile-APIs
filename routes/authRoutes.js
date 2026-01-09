@@ -14,7 +14,7 @@ router.post('/login', authController.login);
 // @route   PUT api/auth/profile
 // @desc    Update profile details (Protected Route)
 // Note: We use the authMiddleware here to ensure only logged-in users can access this
-const upload = require('../config/cloudinary'); // Path to your config file
+const { upload } = require('../config/cloudinary'); // Path to your config file
 
 router.put(
     '/profile', 

@@ -16,10 +16,14 @@ const storage = new CloudinaryStorage({
         folder: 'social_posts', // Separate folder for posts
         allowed_formats: ['jpg', 'png', 'jpeg'],
         folder: 'ecommerce_products',
-        allowed_formats: ['jpg', 'png', 'jpeg']
+        allowed_formats: ['jpg', 'png', 'jpeg'],
     },
 });
 
 
-const upload = multer({ storage: storage });
-module.exports = upload;
+const upload = multer({ storage });
+
+// IMPORTANT: Export as an object
+module.exports = { upload, cloudinary };
+// const upload = multer({ storage: storage });
+// module.exports = upload;

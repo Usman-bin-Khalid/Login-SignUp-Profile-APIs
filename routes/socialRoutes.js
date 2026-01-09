@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const socialCtrl = require('../controllers/socialController');
 const authMiddleware = require('../middleware/auth'); // Your JWT middleware
-const upload = require('../config/cloudinary');
+const { upload } = require('../config/cloudinary');
 
 // All routes require login
 router.post('/post', authMiddleware, upload.single('image'), socialCtrl.createPost); // Create
