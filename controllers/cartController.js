@@ -2,6 +2,17 @@ const Cart = require('../models/Cart');
 const Product = require('../models/Product');
 const Order = require('../models/Order');
 
+// 0. Get Cart
+exports.getCart = async (req, res) => {
+    try {
+        const cart = await Cart.findOne({ userId: req.user.id }).populate('items.productId');
+        if (!cart) return res.status(200).json({ items: [] });
+        res.status(200).json(cart);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching cart", error });
+    }
+};
+
 // 1. Add to Cart
 exports.addToCart = async (req, res) => {
     const { productId, quantity } = req.body;
