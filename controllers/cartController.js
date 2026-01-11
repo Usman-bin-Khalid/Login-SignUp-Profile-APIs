@@ -64,27 +64,34 @@ exports.checkout = async (req, res) => {
     const orderItems = [];
 
     // 2. Verify Stock and Calculate Total
-    for (let item of cart.items) {
-      const product = item.productId;
+for (let item of cart.items) {
+  const product = item.productId;
 
-      if (product.stockQuantity < item.quantity) {
-        return res
-          .status(400)
-          .json({ message: `Insufficient stock for ${product.name}` });
-      }
+  if (!product || !product._id) {
+    return res.status(500).json({
+      message: "Product data missing in cart"
+    });
+  }
 
-      total += product.price * item.quantity;
-      orderItems.push({
-        productId: product._id,
-        name: product.name,
-        price: product.price,
-        quantity: item.quantity,
-      });
+  if (product.stockQuantity < item.quantity) {
+    return res.status(400).json({
+      message: `Insufficient stock for ${product.name}`
+    });
+  }
 
-      // 3. Subtract from Stock
-      product.stockQuantity -= item.quantity;
-      await product.save();
-    }
+  total += product.price * item.quantity;
+
+  orderItems.push({
+    productId: product._id,
+    name: product.name,
+    price: product.price,
+    quantity: item.quantity,
+  });
+
+  product.stockQuantity -= item.quantity;
+  await product.save();
+}
+
 
     // 4. Create Order
     const order = await Order.create({
