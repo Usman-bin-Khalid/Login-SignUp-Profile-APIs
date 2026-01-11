@@ -49,7 +49,7 @@ exports.addToCart = async (req, res) => {
   }
 };
 
-// 2. Checkout (The Complex Logic)
+// 2. Checkout (The Complex Logic) Place Order API
 exports.checkout = async (req, res) => {
   const userId = req.user.id;
 
