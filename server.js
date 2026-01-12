@@ -24,6 +24,7 @@ const socialRoutes = require('./routes/socialRoutes'); // 1. Import new routes
 const productRoutes = require('./routes/productRoutes');
 const cartRoutes = require('./routes/cartRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const eventRoutes = require('./routes/eventRoutes');
 
 const app = express();
 app.use(express.json());
@@ -39,6 +40,7 @@ app.use('/api/social', socialRoutes); // 3. Mount social routes
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/events', eventRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
