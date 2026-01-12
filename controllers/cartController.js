@@ -16,6 +16,8 @@ exports.getCart = async (req, res) => {
 };
 
 // 1. Add to Cart
+
+
 exports.addToCart = async (req, res) => {
   const { productId, quantity } = req.body;
   const userId = req.user.id; // From authMiddleware

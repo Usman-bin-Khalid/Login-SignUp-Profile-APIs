@@ -24,10 +24,22 @@ const userSchema = new mongoose.Schema({
     country: { type: String },
     gender: { type: String, enum: ['Male', 'Female', 'Other'] },
     isProfileComplete: { type: Boolean, default: false },
+    
     // NEW FIELDS FOR SOCIAL INTERACTION
     followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-    following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
-}, { timestamps: true });
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    role: { 
+        type: String, 
+        enum: ['user', 'organizer', 'admin'], 
+        default: 'user' 
+    },
+}, 
+
+
+{ timestamps: true },
+
+
+);
 
 
 
