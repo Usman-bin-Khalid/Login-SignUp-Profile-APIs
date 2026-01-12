@@ -1,4 +1,4 @@
-// middleware/roleMiddleware.js
+
 const authorize = (roles = []) => {
     return (req, res, next) => {
         // req.user is usually set by your JWT verify middleware

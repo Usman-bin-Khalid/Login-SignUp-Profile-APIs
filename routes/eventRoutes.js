@@ -1,4 +1,4 @@
-// routes/eventRoutes.js
+
 const express = require('express');
 const router = express.Router();
 const { createEvent, bookEvent, getUpcomingEvents } = require('../controllers/eventController');
