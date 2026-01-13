@@ -1,8 +1,6 @@
 // controllers/eventController.js
 const Event = require('../models/Event');
 
-// 1. Create Event (Organizer Only)
-// controllers/eventController.js
 exports.createEvent = async (req, res) => {
     try {
         const { title, date, venue, capacity } = req.body;
@@ -21,6 +19,7 @@ exports.createEvent = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
 
 // 2. Book an Event (User Logic)
 exports.bookEvent = async (req, res) => {
