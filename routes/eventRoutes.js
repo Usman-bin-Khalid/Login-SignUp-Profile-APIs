@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const { createEvent, bookEvent, getUpcomingEvents } = require('../controllers/eventController');
-const protect = require('../middleware/authMiddleware'); // Your existing JWT protector
+const protect = require('../middleware/auth');
 const authorize = require('../middleware/roleMiddleware');
 
 // Public/All users: Get upcoming events

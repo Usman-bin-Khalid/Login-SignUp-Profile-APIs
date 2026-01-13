@@ -2,15 +2,21 @@
 const Event = require('../models/Event');
 
 // 1. Create Event (Organizer Only)
+// controllers/eventController.js
 exports.createEvent = async (req, res) => {
     try {
         const { title, date, venue, capacity } = req.body;
+        
         const newEvent = new Event({
-            title, date, venue, capacity,
-            organizer: req.user.id // From auth middleware
+            title,
+            date,
+            venue,
+            capacity,
+            organizer: req.user.id 
         });
+
         await newEvent.save();
-        res.status(201).json(newEvent);
+        res.status(201).json({ message: "Event Created Successfully", event: newEvent });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

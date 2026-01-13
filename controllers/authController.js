@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 
 // SIGN UP
 exports.signup = async (req, res) => {
-  const { email, password, confirmPassword, fullName } = req.body;
+  const { email, password, confirmPassword, fullName ,role} = req.body;
   if (password !== confirmPassword)
     return res.status(400).json({ msg: "Passwords do not match" });
 
@@ -15,7 +15,7 @@ exports.signup = async (req, res) => {
     if (user) return res.status(400).json({ msg: "User already exists" });
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    user = new User({ email, password: hashedPassword, fullName });
+    user = new User({ email, password: hashedPassword, fullName , role});
     await user.save();
 
 
@@ -38,7 +38,7 @@ exports.login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ msg: "Invalid Credentials" });
   
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: user._id ,role: user.role}, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
     res.json({
