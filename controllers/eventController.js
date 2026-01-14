@@ -24,6 +24,7 @@ exports.createEvent = async (req, res) => {
 
 
 
+
 // 2. Book an Event (User Logic)
 exports.bookEvent = async (req, res) => {
   try {
