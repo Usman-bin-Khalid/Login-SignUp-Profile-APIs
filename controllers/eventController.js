@@ -67,3 +67,12 @@ exports.getUpcomingEvents = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+exports.getUpcomingEvents = async (req, res) => {
+    try {
+        const events = (await Event.find({date : {$gt : new Date()}})).sort({date : 1});
+        
+    }catch (err) {
+        
+    }
+}
