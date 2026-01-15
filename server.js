@@ -1,5 +1,3 @@
-
-
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -17,6 +15,11 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB Connected"))
     .catch(err => console.log(err));
+
+// Root route to check if API is working
+app.get('/', (req, res) => {
+    res.send('Login, Sign Up & Profile APIs are running! Use /api/products/all to see products.');
+});
 
 // 2. Register routes
 app.use('/api/auth', authRoutes);
