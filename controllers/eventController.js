@@ -22,7 +22,15 @@ exports.createEvent = async (req, res) => {
   }
 };
 
+exports.bookEvent2 = async (req, res) => {
+  try {
+   const event = await Event.findById(req.params.id);
+   if (!event) return res.status(404).json({message : 'Event not found'});
+   if (new Date (event.date) < new Date ()) return res.status(400).json({message : 'Can not book past event'});
+  } catch(err) {
 
+  }
+}
 
 
 // 2. Book an Event (User Logic)
@@ -68,11 +76,3 @@ exports.getUpcomingEvents = async (req, res) => {
   }
 };
 
-exports.getUpcomingEvents = async (req, res) => {
-    try {
-        const events = (await Event.find({date : {$gt : new Date()}})).sort({date : 1});
-        
-    }catch (err) {
-        
-    }
-}
